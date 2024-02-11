@@ -10,11 +10,13 @@
     <h1>Datos de la tabla 'Persona'</h1>
     <table border="1">
         <tr>
-            <th>ID de la Persona</th>
-            <th>Dirección</th>
-            <th>Nombre</th>
+            <th>DNI de la Persona</th>
+            <th>Primer Nombre</th>
+            <th>Segundo Nombre</th>
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
+            <th>Correo</th>
+            <th>Telefono</th>
         </tr>
         {% for dato in datos %}
         <tr>
@@ -23,6 +25,8 @@
             <td>{{ dato[2] }}</td>
             <td>{{ dato[3] }}</td>
             <td>{{ dato[4] }}</td>
+            <td>{{ dato[5] }}</td>
+            <td>{{ dato[6] }}</td>
         </tr>
         {% endfor %}
     </table>

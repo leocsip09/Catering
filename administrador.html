@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Pagina de Administracion</h1>
+    <p>Agrea un nuevo servicio de menu </p>
+    <form action="/ingresar_servicio" method="get">
+        <button type="submit">Servicio</button>
+    </form>
+    <p>Mostrar los datos de todos los clientes  </p>
+    <form action="{{url_for('mostrar_datos')}}" method="get">
+        <button type="submit">Mostrar Datos</button>
+    </form>
+    <form action="/" method="get" id="logoutButton" >
+        <button type="submit">Cerrar Sesion</button>
+    </form>
+</body>
+</html>
