@@ -7,10 +7,18 @@ $(document).ready(function() {
 
         if (username === 'root' && password === '74863840') {
             $('#loginMessage').text('Inicio de sesión exitoso.');
-            window.location.href = '/dashboard'; // Redirigir a la página del dashboard
+            window.location.href = 'administrador'; // Redirigir a la página del dashboard
         } else {
-            $('#loginMessage').text('Usuario o contraseña incorrectos.');
+            $('#errorMessage').show(); // Mostrar el mensaje de error
         }
     });
-});
 
+    $('#logoutButton').click(function() {
+        fetch('/logout', { method: 'POST' })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/'; // Redirigir a la página de inicio de sesión
+                }
+            });
+    });
+});

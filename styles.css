@@ -6,6 +6,7 @@ button {
     color:rgb(0, 0, 0);
     border:none;
     border-radius:10px;
+    justify-content: center;
     cursor:pointer;
     
 }
@@ -16,19 +17,28 @@ button:hover {
 body{
     font-family:'Quicksand';
     text-align:center;
+    justify-content: center;
 }
 
 input[type="text"]{
     padding:3px;
     border-radius:8px;
+    justify-content: center;
 }
 input[type="password"]{
     padding:3px;
     border-radius:8px;
+    justify-content: center;
 }
 input[type="number"]{
     padding:3px;
     border-radius:8px;
+    justify-content: center;
+}
+input[type="email"]{
+    padding:3px;
+    border-radius:8px;
+    justify-content: center;
 }
 table{
     width:100%;
@@ -38,3 +48,4 @@ table{
 tr:nth-child(even) {
     background-color: #f2f2f2;  
 }
+
