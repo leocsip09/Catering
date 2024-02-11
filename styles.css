@@ -1,0 +1,40 @@
+button {
+    width: 120px;
+    height:25px;
+    margin-bottom:10px;
+    background-color:rgb(157, 210, 230);
+    color:rgb(0, 0, 0);
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    
+}
+button:hover {
+
+    background-color:rgb(23, 173, 227);
+}
+body{
+    font-family:'Quicksand';
+    text-align:center;
+}
+
+input[type="text"]{
+    padding:3px;
+    border-radius:8px;
+}
+input[type="password"]{
+    padding:3px;
+    border-radius:8px;
+}
+input[type="number"]{
+    padding:3px;
+    border-radius:8px;
+}
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;  
+}
