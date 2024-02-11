@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = '74863840'
-app.config['MYSQL_DB'] = 'colegio4'
+app.config['MYSQL_DB'] = 'catering'
 
 mysql = MySQL(app)
 
@@ -15,9 +15,21 @@ mysql = MySQL(app)
 def index (): 
     return render_template('index.html')
 
-@app.route('/dashboard')
+@app.route('/cotizar')
 def dashboard(): 
-    return render_template ('dashboard.html')
+    return render_template ('cotizar.html')
+
+@app.route('/sesion')
+def sesion():
+    return render_template('sesion.html')
+
+@app.route('/administrador')
+def administrador():
+    return render_template('administrador.html')
+
+@app.route('/ingresar_servicio')
+def ingresar_servicio():
+    return render_template('ingresar_servicio.html')
 
 @app.route('/insertar')
 def formulario_insertar(): 
@@ -26,17 +38,22 @@ def formulario_insertar():
 @app.route('/insertar_datos', methods=['POST'])
 def insert_datos():
     if request.method == 'POST':
-        id_persona = request.form['id_persona']
-        direccion = request.form['direccion']
-        nombre = request.form['nombre']
-        apellido_pat = request.form['apellido_pat']
-        apellido_mat = request.form['apellido_mat']
+        dni = request.form['dni']
+        primer_nombre = request.form['primer_nombre']
+        segundo_nombre = request.form['segundo_nombre']
+        apellido_paterno = request.form['apellido_paterno']
+        apellido_materno = request.form['apellido_materno']
+        correo=request.form['correo']
+        telefono= request.form['telefono']
+        departamento=request.form['departamento']
+        ciudad=request.form['ciudad']
+        notas_adicionales=request.form['notas_adicionales']
         conn = mysql.connection
         cur = conn.cursor()
-        cur.execute("INSERT INTO persona (id_persona, direccion, nombre, apellido_pat, apellido_mat) VALUES (%s, %s, %s, %s, %s)", (id_persona, direccion, nombre, apellido_pat, apellido_mat))
+        cur.callproc('insertar', (dni,primer_nombre,segundo_nombre,apellido_paterno,apellido_materno,correo,telefono,departamento,ciudad,notas_adicionales))
         conn.commit()
         cur.close()
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('index'))
 
 @app.route('/mostrar_datos')
 def mostrar_datos():
@@ -46,6 +63,5 @@ def mostrar_datos():
     datos = cur.fetchall()
     cur.close()
     return render_template('datos.html', datos=datos)
-
 if __name__== '__main__':
     app.run(debug=True, port =5000)
