@@ -108,7 +108,7 @@ create table ingredientes(
     primary key(id_ingrediente)
 );
 create table proveedor(
-	id_proveedor int, 
+	id_proveedor int AUTO_INCREMENT, 
     nombre_proveedor varchar(50),
     telefono int, 
     correo varchar(50),
@@ -118,7 +118,7 @@ create table proveedor(
     primary key(id_proveedor)
 );
 create table inventario(
-	id_inventario int, 
+	id_inventario int AUTO_INCREMENT, 
     nombre_producto varchar(40),
     cantidad_disponible int, 
     unidad_medida varchar(20), 
@@ -711,4 +711,26 @@ BEGIN
 END //
 
 DELIMITER ;
-CALL mostrar_venta(1009)
+CALL mostrar_venta(1009);
+
+drop procedure if exists Insertar_Proveedor;
+delimiter //
+create procedure Insertar_Proveedor(in nom_prv varchar(50), in tel int, in cor varchar(50), in dir varchar(50), in dep varchar(30), in ciu varchar(30))
+begin
+	insert into proveedor(nombre_proveedor, telefono, correo, direccion, departamento, ciudad) values (nom_prv, tel, cor, dir, dep, ciu);
+end;
+//
+delimiter ;
+
+call Insertar_Proveedor("Feria del Altiplano", 912345678, "feria.altiplano@gmail.com", "teniente ferre 206", "arequipa", "arequipa");
+select * from proveedor;
+DROP PROCEDURE IF EXISTS Insertar_Inventario;
+DELIMITER //
+CREATE PROCEDURE Insertar_Inventario(in nom_prod varchar(50), in cant int, in unidad varchar(20), in precio int, in proveedor int)
+BEGIN
+	insert into inventario(nombre_producto, cantidad_disponible, unidad_medida, precio_unidad, id_proveedor) values (nom_prod, cant, unidad, precio, proveedor);
+END; //
+DELIMITER ;
+CALL Insertar_Inventario('Chichasara', 20, 'kilogramos', 2, 820);
+select * from inventario;
+
