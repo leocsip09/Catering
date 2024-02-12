@@ -78,7 +78,7 @@ create table evento(
     tipo_evento varchar(60),
     ubicacion_evento varchar(50),
     dni_cliente int,
-    id_menu int;
+    id_menu int,
     primary key (id_evento)
 );
 
@@ -143,7 +143,6 @@ alter table pedido add foreign key (id_evento) references evento(id_evento);
 alter table evento add foreign key (dni_cliente) references cliente(dni);
 alter table evento add foreign key (id_menu) references menu (id_menu);
 alter table tipo_contratacion add foreign key (id_evento) references evento(id_evento);
-alter table menu add foreign key (id_evento) references evento(id_evento);
 alter table ingredientes add foreign key (id_menu) references menu(id_menu);
 alter table ingredientes add foreign key (id_proveedor) references proveedor(id_proveedor);
 alter table inventario add foreign key (id_proveedor) references proveedor(id_proveedor);
@@ -250,6 +249,33 @@ values
 select * from feedback_cliente;
 
 -- 4)
+
+insert into menu(id_menu, precio_persona, nombre_menu)
+values 
+	(500,20,'Sabor peruano'),
+    (501,23,'Del ajo y aji'),
+    (502,25,'Come rico'),
+    (503,25,'La casa del sabor'),
+    (504,30,'Sazon Peruana'),
+    (505,18,'Sazon Casera'),
+    (506,22,'Las tres ollitas'),
+    (507,25,'Cucharita cucharon'),
+    (508,28,'Sal y pimienta'),
+    (509,25,'Papas y camotes'),
+    (510,40,'Orgullo peruano'),
+    (511,22,'Mixtura de sabor'),
+    (512,26,'El Nene'),
+    (513,23,'Kndela'),
+    (514,20,'La zambita'),
+    (515,40,'Los Rodriguez'),
+    (516,25,'Hermanos Ayar'),
+    (517,30,'Pica rico'),
+    (518,30,'Magia al paladar'),
+    (519,21,'Menu perucho');
+    
+select * from menu;
+
+-- 5)
 insert into evento(id_evento, nombre_evento, fecha_evento, hora_inicio, hora_fin, tipo_evento, ubicacion_evento, dni_cliente, id_menu)
 values 
 	(200,'boda de miguel y maria','2024-09-28','08:00:00','14:00:00','boda','av dolores 123',74863840,500),
@@ -275,7 +301,7 @@ values
 
 select * from evento;
 
--- 5)
+-- 6)
 insert into empleado(dni,fecha_contratacion,puesto,direccion,salario)
 values 
 	(29614137,'2024-05-01','mozo','av bolognesi 1003',2000),
@@ -301,7 +327,7 @@ values
 
 select * from empleado;
 
--- 6)
+-- 7)
 insert into horario_trabajo(id_horario,horario_inicio,horario_fin,fecha,dni_empleado)
 values 
 	(300,'08:00:00','14:00:00','2024-09-28',29614137),
@@ -325,7 +351,7 @@ values
     (318,'09:00:00','15:00:00','2024-01-07',12345658),
     (319,'08:00:00','14:00:00','2024-01-08',12345657);
     
--- 7) 
+-- 8) 
 insert into tipo_contratacion(id_tipo_contratacion,cantidad,fecha_reserva,tipo_servicio,id_evento)
 values 
 	(400,2,'2024-03-01','movilidad',200),
@@ -350,32 +376,6 @@ values
     (419,2,'2024-10-04','bebida',209);
     
 select * from tipo_contratacion;
-
--- 8)
-insert into menu(id_menu, precio_persona, nombre_menu,id_evento)
-values 
-	(500,20,'Sabor peruano',200),
-    (501,23,'Del ajo y aji',201),
-    (502,25,'Come rico',202),
-    (503,25,'La casa del sabor',203),
-    (504,30,'Sazon Peruana',204),
-    (505,18,'Sazon Casera',205),
-    (506,22,'Las tres ollitas',206),
-    (507,25,'Cucharita cucharon',207),
-    (508,28,'Sal y pimienta',208),
-    (509,25,'Papas y camotes',209),
-    (510,40,'Orgullo peruano',210),
-    (511,22,'Mixtura de sabor',211),
-    (512,26,'El Nene',202),
-    (513,23,'Kndela',203),
-    (514,20,'La zambita',204),
-    (515,40,'Los Rodriguez',205),
-    (516,25,'Hermanos Ayar',206),
-    (517,30,'Pica rico',207),
-    (518,30,'Magia al paladar',208),
-    (519,21,'Menu perucho',209);
-    
-select * from menu;
 
 -- 9)
 insert into ingredientes(id_ingrediente, precio_unidad, unidad_medida, cantidad_requerida, nombre_ingrediente, id_menu)
