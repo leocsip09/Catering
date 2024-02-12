@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Dale un vistazo a nuestros menus y tipos de eventos que tenemos para ofrecer </h1>
+    <table border="1">
+        <tr>
+            <th>Tipos de eventos</th>
+        </tr>
+        {% for evento in evento %}
+        <tr>
+            <td>{{ evento[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <table border="1">
+        <tr>
+            <th>Tipos de menus</th>
+        </tr>
+        {% for menu in menu %}
+        <tr>
+            <td>{{ menu[0] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button id="backButton">Back</button>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

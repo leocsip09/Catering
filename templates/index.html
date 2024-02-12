@@ -17,7 +17,14 @@
     <form action="/sesion" method="get">
         <button type="submit">Login</button>
     </form>
-    
+    <p>Ofrecemos cobertura a diferentes tipos de eventops asi como amplia catalogo de menus</p>
+    <form action="{{ url_for('mostrar_servicios') }}" method="get">
+        <button type="submit">Ver catalogo</button>
+    </form>
+    <p>¿Te gusto nuestro servicio?. Dejanos tu comentario</p>
+    <form action="/comentario" method="get">
+        <button type="submit">comentar</button>
+    </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='login.js') }}"></script>
 </body>

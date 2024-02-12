@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>date from database</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Datos de la tabla 'Persona'</h1>
+    <table border="1">
+        <tr>
+            <th>ID de la factura</th>
+            <th>Fecha de emision</th>
+            <th>Monto total</th>
+            <th>Id del pedido</th>
+            <th>Dni del cliente</th>
+            <th>Nombre del cliente</th>
+            <th>Apellidos del cliente</th>
+            <th>Departamento del cliente</th>
+            <th>Ciudad del cliente</th>
+            <th>Notas adicionales del cliente</th>
+        </tr>
+        {% for venta in venta %}
+        <tr>
+            <td>{{ venta[0] }}</td>
+            <td>{{ venta[1] }}</td>
+            <td>{{ venta[2] }}</td>
+            <td>{{ venta[3] }}</td>
+            <td>{{ venta[4] }}</td>
+            <td>{{ venta[5] }}</td>
+            <td>{{ venta[6] }}</td>
+            <td>{{ venta[7] }}</td>
+            <td>{{ venta[8] }}</td>
+            <td>{{ venta[9] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <button id="backButton">Back</button>
+
+    <script>
+        document.getElementById("backButton").addEventListener("click", function() {
+            window.history.back();
+        });
+    </script>
+</body>
+</html>

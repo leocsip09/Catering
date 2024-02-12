@@ -38,7 +38,39 @@
 
         <label for="notas_adicionales">Notas Adicionales:</label>
         <input type="text" id="notas_adicionales" name="notas_adicionales" maxlength="100" required><br>
+        
+        <label for="nombre_evento">Nombre del evento:</label>
+        <input type="text" id="nombre_evento" name="nombre_evento" maxlength="80" required><br>
 
+        <label for="fecha_evento">Fecha del evento:</label>
+        <input type="date" id="fecha_evento" name="fecha_evento" required><br>
+
+        <label for="hora_inicio">Hora de inicio:</label>
+        <input type="time" id="hora_inicio" name="hora_inicio" required><br>
+
+        <label for="hora_fin">Hora de fin :</label>
+        <input type="time" id="hora_fin" name="hora_fin" required><br>
+
+        <label for="tipo_evento">Tipo de evento:</label>
+        <input type="text" id="tipo_evento" name="tipo_evento" maxlength="40" required><br>
+
+        <label for="ubicacion_evento">Ubicacion del evento:</label>
+        <input type="text" id="ubicacion_evento" name="ubicacion_evento" maxlength="50" required><br>
+
+        <label for="cantidad">Cantidad del tipo de contratacion:</label>
+        <input type="number" id="cantidad" name="cantidad" required><br>
+
+        <label for="tipo_servicio">Tipo de contratacion:</label>
+        <input type="text" id="tipo_servicio" name="tipo_servicio" maxlength="20" required><br>
+
+        <label for="cantidad_personas">Cantidad de persona:</label>
+        <input type="number" id="cantidad_personas" name="cantidad_personas" required><br>
+
+        <label for="nombre_menu">Nombre del menu:</label>
+        <input type="text" id="nombre_menu" name="nombre_menu" maxlength="30" required><br>
+        
+        <label for="metodo_pago">Metodo de pago:</label>
+        <input type="text" id="metodo_pago" name="metodo_pago" maxlength="30" required><br>
 
         <button id="backButton">Back</button>
         <script>
@@ -46,8 +78,9 @@
                 window.history.back();
             });
         </script>
-        
+        <form action ="{{ url_for('insert_datos') }}" method="get" >
         <button type="submit">Pagar</button>
+        </form>
     </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
