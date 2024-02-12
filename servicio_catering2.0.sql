@@ -6,11 +6,11 @@ use catering;
 create table persona(
 	dni int, 
     primer_nombre varchar(30),
-    segundo_nombre varchar(30),
+    segundo_nombre varchar(30) null,
     apellido_paterno varchar(30),
     apellido_materno varchar(30),
     correo varchar(50),
-    telefono int,
+    telefono int null,
     primary key (dni)
 );
 
@@ -43,7 +43,7 @@ create table horario_trabajo(
 
 create table feedback_cliente (
 	id_feedback int ,
-    comentario varchar(100),
+    comentario varchar(100) null,
     calificacion char(1),
     fecha_feedback date,
     dni_cliente int,
@@ -70,7 +70,7 @@ create table pedido (
 );
 
 create table evento(
-	id_evento int, 
+	id_evento int auto_increment,
     nombre_evento varchar(100),
     fecha_evento date,
 	hora_inicio time,
@@ -78,6 +78,7 @@ create table evento(
     tipo_evento varchar(60),
     ubicacion_evento varchar(50),
     dni_cliente int,
+    id_menu int;
     primary key (id_evento)
 );
 
@@ -91,10 +92,9 @@ create table tipo_contratacion(
 );
 
 create table menu(
-	id_menu int, 
+	id_menu int auto_increment,
     precio_persona int, 
     nombre_menu varchar(40),
-    id_evento int,
     primary key (id_menu)
 );
 
@@ -114,13 +114,12 @@ create table proveedor(
     nombre_proveedor varchar(50),
     telefono int, 
     correo varchar(50),
-    cantidad_disponible int, 
     direccion varchar(50),
     departamento varchar(30),
     ciudad varchar(30),
     primary key(id_proveedor)
 );
-alter table proveedor drop column cantidad_disponible;
+
 create table inventario(
 	id_inventario int, 
     nombre_producto varchar(40),
@@ -142,6 +141,7 @@ alter table factura add foreign key (dni_cliente) references cliente(dni);
 alter table factura add foreign key (id_pedido) references pedido(id_pedido);
 alter table pedido add foreign key (id_evento) references evento(id_evento);
 alter table evento add foreign key (dni_cliente) references cliente(dni);
+alter table evento add foreign key (id_menu) references menu (id_menu);
 alter table tipo_contratacion add foreign key (id_evento) references evento(id_evento);
 alter table menu add foreign key (id_evento) references evento(id_evento);
 alter table ingredientes add foreign key (id_menu) references menu(id_menu);
@@ -246,59 +246,59 @@ values
     (117,'MExcelenteuen trato',5,'2024-01-06',76543226),
     (118,'El animador estuvo tomado',0,'2024-01-07',76543227),
     (119,'Muy ordenados',5,'2024-01-08',76543228);
-    
+
 select * from feedback_cliente;
 
 -- 4)
-insert into evento(id_evento, nombre_evento, fecha_evento, hora_inicio, hora_fin, tipo_evento, ubicacion_evento, dni_cliente)
+insert into evento(id_evento, nombre_evento, fecha_evento, hora_inicio, hora_fin, tipo_evento, ubicacion_evento, dni_cliente, id_menu)
 values 
-	(200,'boda de miguel y maria','2024-09-28','08:00:00','14:00:00','boda','av dolores 123',74863840),
-    (201,'baby shower Emilia','2024-01-27','09:00:00','15:00:00','baby shower','av pizarro 665',76543210),
-    (202,'quinceaños Lucia','2024-02-28','10:00:00','16:00:00','quinceaños','av progreso 150',76543211),
-    (203,'fiesta de promocion La Salle','2024-03-28','08:00:00','14:00:00','promo','av dolores 123',76543212),
-    (204,'cumpleaños Eduardo','2024-04-28','11:00:00','17:00:00','cumpleaños','av aviacion 512',76543213),
-    (205,'baby shower Pablo','2024-05-28','08:00:00','14:00:00','baby shower','av progreso 150',76543214),
-    (206,'Bodas de Oro San Jose','2024-06-28','11:00:00','17:00:00','bodas de oro','av dolores 123',76543215),
-    (207,'Aniversario de Pablo y Romina','2024-07-28','09:00:00','15:00:00','aniversario','av pizarro 665',76543216),
-    (208,'boda de Gabriel y Maria','2024-08-28','10:00:00','16:00:00','boda','av aviacion 512',76543217),
-    (209,'boda de jose y juana','2024-09-28','10:00:00','16:00:00','boda','av dolores 123',76543218),
-    (210,'quinceaños Camila','2024-10-28','08:00:00','14:00:00','quinceaños','av progreso 150',76543219),
-    (211,'boda de leonardo y Adriana','2024-11-28','10:00:00','16:00:00','boda','av pizarro 665',76543220),
-    (212,'boda de Marco y Luisa','2024-01-01','08:00:00','14:00:00','boda','av dolores 123',76543221),
-    (213,'graduacion de Ciencia de la Computacion','2024-01-02','10:00:00','16:00:00','graduacion','av progreso 150',76543222),
-    (214,'baby shower Elisa','2024-01-03','11:00:00','17:00:00','baby shower','av pizarro 665',76543223),
-    (215,'graduacion arquitectura','2024-01-04','08:00:00','14:00:00','graduacion','av aviacion 512',76543224),
-    (216,'Bodas de Oro San Francisco','2024-01-05','10:00:00','16:00:00','bodas de oro','av progreso 150',76543225),
-    (217,'Aniversario de 10 años de egresados','2024-01-06','09:00:00','15:00:00','aniversario','av dolores 123',76543226),
-    (218,'Fiesta Familiar Prescott','2024-01-07','11:00:00','17:00:00','fiesta familiar','av pizarro 665',76543227),
-    (219,'Fiesta Familiar Pilar','2024-01-08','10:00:00','16:00:00','fiesta familiar','av progreso 150',76543228);
-    
+	(200,'boda de miguel y maria','2024-09-28','08:00:00','14:00:00','boda','av dolores 123',74863840,500),
+    (201,'baby shower Emilia','2024-01-27','09:00:00','15:00:00','baby shower','av pizarro 665',76543210,501),
+    (202,'quinceaños Lucia','2024-02-28','10:00:00','16:00:00','quinceaños','av progreso 150',76543211,502),
+    (203,'fiesta de promocion La Salle','2024-03-28','08:00:00','14:00:00','promo','av dolores 123',76543212,503),
+    (204,'cumpleaños Eduardo','2024-04-28','11:00:00','17:00:00','cumpleaños','av aviacion 512',76543213,504),
+    (205,'baby shower Pablo','2024-05-28','08:00:00','14:00:00','baby shower','av progreso 150',76543214,505),
+    (206,'Bodas de Oro San Jose','2024-06-28','11:00:00','17:00:00','bodas de oro','av dolores 123',76543215,506),
+    (207,'Aniversario de Pablo y Romina','2024-07-28','09:00:00','15:00:00','aniversario','av pizarro 665',76543216,507),
+    (208,'boda de Gabriel y Maria','2024-08-28','10:00:00','16:00:00','boda','av aviacion 512',76543217,508),
+    (209,'boda de jose y juana','2024-09-28','10:00:00','16:00:00','boda','av dolores 123',76543218,509),
+    (210,'quinceaños Camila','2024-10-28','08:00:00','14:00:00','quinceaños','av progreso 150',76543219,510),
+    (211,'boda de leonardo y Adriana','2024-11-28','10:00:00','16:00:00','boda','av pizarro 665',76543220,511),
+    (212,'boda de Marco y Luisa','2024-01-01','08:00:00','14:00:00','boda','av dolores 123',76543221,512),
+    (213,'graduacion de Ciencia de la Computacion','2024-01-02','10:00:00','16:00:00','graduacion','av progreso 150',76543222,513),
+    (214,'baby shower Elisa','2024-01-03','11:00:00','17:00:00','baby shower','av pizarro 665',76543223,514),
+    (215,'graduacion arquitectura','2024-01-04','08:00:00','14:00:00','graduacion','av aviacion 512',76543224,515),
+    (216,'Bodas de Oro San Francisco','2024-01-05','10:00:00','16:00:00','bodas de oro','av progreso 150',76543225,516),
+    (217,'Aniversario de 10 años de egresados','2024-01-06','09:00:00','15:00:00','aniversario','av dolores 123',76543226,517),
+    (218,'Fiesta Familiar Prescott','2024-01-07','11:00:00','17:00:00','fiesta familiar','av pizarro 665',76543227,518),
+    (219,'Fiesta Familiar Pilar','2024-01-08','10:00:00','16:00:00','fiesta familiar','av progreso 150',76543228,519);
+
 select * from evento;
 
 -- 5)
-insert into empleado(dni,fecha_contratacion,puesto,direccion,salario,id_evento)
+insert into empleado(dni,fecha_contratacion,puesto,direccion,salario)
 values 
-	(29614137,'2024-05-01','mozo','av bolognesi 1003',2000,200),
-	(12345678,'2024-04-02','bartender','av cayma 504',1500,201),
-    (12345677,'2024-03-02','animador','la molina 321',1800,202),
-    (12345676,'2024-02-03','maestro de ceremonia','av ee.uu 200',1000,203),
-    (12345675,'2024-01-04','mozo','proceres 450',2000,204),
-    (12345674,'2024-06-05','cocinero','mariano melgar 500',3000,205),
-    (12345673,'2024-05-06','animador','alamos 430',1800,206),
-    (12345672,'2024-05-05','cocinero','paucarpata 200',3000,207),
-    (12345668,'2024-04-15','mozo','umacollo 250',1900,208),
-    (12345667,'2024-04-12','maestro de ceremonia','av tronchadero 201',1500,209),
-    (12345666,'2024-01-05','cocinero','dijkstra 666',3000,210),
-    (12345665,'2024-02-07','bartender','hurtley 120',2200,211),
-    (12345664,'2024-01-01','mozo','aviacion 120',2200,212),
-    (12345663,'2024-01-02','animador','miraflores 240',2200,213),
-    (12345662,'2024-01-03','payaso','panama 103',2200,214),
-    (12345661,'2024-01-04','maestro de ceremonia','benavides 150',2200,215),
-    (12345660,'2024-10-05','mozo','pachacutec 502',2200,216),
-    (12345659,'2024-01-06','cocinero','paucarpata 121',2200,217),
-    (12345658,'2024-01-07','cocinero','miguel grau 302',2200,218),
-    (12345657,'2024-01-08','bartender','ugarteche 300',2200,219);
-    
+	(29614137,'2024-05-01','mozo','av bolognesi 1003',2000),
+	(12345678,'2024-04-02','bartender','av cayma 504',1500),
+    (12345677,'2024-03-02','animador','la molina 321',1800),
+    (12345676,'2024-02-03','maestro de ceremonia','av ee.uu 200',1000),
+    (12345675,'2024-01-04','mozo','proceres 450',2000),
+    (12345674,'2024-06-05','cocinero','mariano melgar 500',3000),
+    (12345673,'2024-05-06','animador','alamos 430',1800),
+    (12345672,'2024-05-05','cocinero','paucarpata 200',3000),
+    (12345668,'2024-04-15','mozo','umacollo 250',1900),
+    (12345667,'2024-04-12','maestro de ceremonia','av tronchadero 201',1500),
+    (12345666,'2024-01-05','cocinero','dijkstra 666',3000),
+    (12345665,'2024-02-07','bartender','hurtley 120',2200),
+    (12345664,'2024-01-01','mozo','aviacion 120',2200),
+    (12345663,'2024-01-02','animador','miraflores 240',2200),
+    (12345662,'2024-01-03','payaso','panama 103',2200),
+    (12345661,'2024-01-04','maestro de ceremonia','benavides 150',2200),
+    (12345660,'2024-10-05','mozo','pachacutec 502',2200),
+    (12345659,'2024-01-06','cocinero','paucarpata 121',2200),
+    (12345658,'2024-01-07','cocinero','miguel grau 302',2200),
+    (12345657,'2024-01-08','bartender','ugarteche 300',2200);
+
 select * from empleado;
 
 -- 6)

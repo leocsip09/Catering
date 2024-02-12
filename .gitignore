@@ -45,3 +45,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 React
+
+# esta cosa horrible que me complica la vida y ahora no sirve
+servicio_catering.sql
