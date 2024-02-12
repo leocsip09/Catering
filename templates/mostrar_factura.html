@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Factura de su compra, ¡gracias por elegirnos!</h1>
+    <table border="1">
+        <tr>
+            <th>ID de la factura</th>
+            <th>DNI del cliente</th>
+            <th>Fecha de emisión</th>
+            <th>Nombre del menú</th>
+            <th>Monto Total</th>
+        </tr>
+        {% for dato in datos %}
+        <tr>
+            <td>{{ dato[0] }}</td>
+            <td>{{ dato[1] }}</td>
+            <td>{{ dato[2] }}</td>
+            <td>{{ dato[3] }}</td>
+            <td>{{ dato[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/" method="get">
+        <button type="submit">Pagina principal</button>
+    </form>
+
+</body>
+</html>

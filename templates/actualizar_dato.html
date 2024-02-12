@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{ url_for('actualizar_datos') }}" method="post">
+
+        <label for="dni_param">DNI de la persona:</label>
+        <input type="number" id="dni_param"  name="dni_param" required><br>
+
+        <label for="fecha_contratacion_param">Fecha de contrato:</label>
+        <input type="date" id="fecha_contratacion_param" name="fecha_contratacion_param"  required><br>
+        
+        <label for="puesto_param">Puesto de trabajo:</label>
+        <input type="text" id="puesto_param"  name="puesto_param" maxlength="20" required><br>
+
+        <label for="direccion_param">Direccion del empleado:</label>
+        <input type="text" id="direccion_param" name="direccion_param" maxlength="50" required><br>
+
+        <label for="salario_param">Salario del empleado:</label>
+        <input type="number" id="salario_param" name="salario_param"  required><br>
+
+        <label for="id_evento_param">ID del evento en el que va a participar:</label>
+        <input type="number" id="id_evento_param" name="id_evento_param"  required><br>
+
+        <button id="backButton">Back</button>
+        <script>
+            document.getElementById("backButton").addEventListener("click", function() {
+                window.history.back();
+            });
+        </script>
+        <form action ="{{ url_for('actualizar_datos') }}" method="get" >
+        <button type="submit">Enviar</button>
+        </form>        
+
+    </form>
+</body>
+</html>
