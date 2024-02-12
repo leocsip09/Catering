@@ -10,7 +10,7 @@
     <h1>Formulario para contratar el servicio de Catering</h1>
     <form action="{{ url_for('insert_datos') }}" method="post">
         <label for="dni">DNI de la Persona:</label>
-        <input type="number" id="dni" name="dni" required><br>
+        <input type="number" id="dni"  name="dni" required><br>
 
         <label for="primer_nombre">Primer Nombre:</label>
         <input type="text" id="primer_nombre" name="primer_nombre" maxlength="20" required><br>
@@ -39,16 +39,16 @@
         <label for="notas_adicionales">Notas Adicionales:</label>
         <input type="text" id="notas_adicionales" name="notas_adicionales" maxlength="100" required><br>
 
-        <button type="submit">Enviar</button>
-        
+
         <button id="backButton">Back</button>
         <script>
             document.getElementById("backButton").addEventListener("click", function() {
                 window.history.back();
             });
         </script>
-
+        
+        <button type="submit">Pagar</button>
+    </form>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 </body>
 </html>

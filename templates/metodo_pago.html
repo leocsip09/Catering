@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pago del Servicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Metodo de Pago</h1>
+    <p>El DNI del usuario es: {{dni}}</p>
+    <form action="/factura" method="get">
+        <button type="submit">comprar</button>
+    </form>
+    <form action="{{ url_for('borrar_datos') }}" method="post">
+        <input type="hidden" id="dni" name="dni" value="{{ dni }}">
+        <button type="submit">Cancelar Pago</button>
+    </form>
+</body>
+</html>
