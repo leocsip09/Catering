@@ -76,10 +76,11 @@ create table evento(
     tipo_evento varchar(40),
     ubicacion_evento varchar(50),
     dni_cliente int,
-    metodo_pago varchar(50),
+    metodo_pago varchar(20),
     id_menu int,
     primary key (id_evento)
 );
+alter table evento add column id_menu int;
 create table tipo_contratacion(
 	id_tipo_contratacion int, 
     cantidad int,
@@ -88,7 +89,6 @@ create table tipo_contratacion(
     id_evento int,
     primary key(id_tipo_contratacion)
 );
-
 
 create table menu(
 	id_menu int, 
@@ -108,7 +108,7 @@ create table ingredientes(
     primary key(id_ingrediente)
 );
 create table proveedor(
-	id_proveedor int AUTO_INCREMENT, 
+	id_proveedor int, 
     nombre_proveedor varchar(50),
     telefono int, 
     correo varchar(50),
@@ -118,7 +118,7 @@ create table proveedor(
     primary key(id_proveedor)
 );
 create table inventario(
-	id_inventario int AUTO_INCREMENT, 
+	id_inventario int, 
     nombre_producto varchar(40),
     cantidad_disponible int, 
     unidad_medida varchar(20), 
@@ -212,36 +212,9 @@ values
     
 select * from feedback_cliente;
 -- 4)
-insert into menu(id_menu, precio_persona, nombre_menu)
-values 
-	(500,20,'Sabor peruano'),
-    (501,23,'Del ajo y aji'),
-    (502,25,'Come rico'),
-    (503,25,'La casa del sabor'),
-    (504,30,'Sazon Peruana'),
-    (505,18,'Sazon Casera'),
-    (506,22,'Las tres ollitas'),
-    (507,25,'Cucharita cucharon'),
-    (508,28,'Sal y pimienta'),
-    (509,25,'Papas y camotes'),
-    (510,40,'Orgullo peruano'),
-    (511,22,'Mixtura de sabor'),
-    (512,26,'El Nene'),
-    (513,23,'Kndela'),
-    (514,20,'La zambita'),
-    (515,40,'Los Rodriguez'),
-    (516,25,'Hermanos Ayar'),
-    (517,30,'Pica rico'),
-    (518,30,'Magia al paladar'),
-    (519,21,'Menu perucho');
-    
-select * from menu;
-
-
--- 5)
 insert into evento(id_evento, nombre_evento, fecha_evento, hora_inicio, hora_fin, tipo_evento, ubicacion_evento, dni_cliente,metodo_pago,id_menu)
 values 
-	(200,'boda de miguel y maria','2024-09-28','08:00:00','14:00:00','boda','av dolores 123',74863840,'tarjeta de credito',500),
+	(200,'boda de miguel y maria','2024-09-28','08:00:00','14:00:00','boda','av dolores 123',74863840,'tarjeta de credito',500 ),
     (201,'baby shower Emilia','2024-01-27','09:00:00','15:00:00','baby shower','av pizarro 665',76543210,'tarjeta de debito',501),
     (202,'quinceaños Lucia','2024-02-28','10:00:00','16:00:00','quinceaños','av progreso 150',76543211,'tarjeta de credito',502),
     (203,'fiesta de promocion La Salle','2024-03-28','08:00:00','14:00:00','promo','av dolores 123',76543212,'tarjeta de debito',503),
@@ -252,11 +225,11 @@ values
     (208,'boda de Gabriel y Maria','2024-08-28','10:00:00','16:00:00','boda','av aviacion 512',76543217,'tarjeta de credito',508),
     (209,'boda de jose y juana','2024-09-28','10:00:00','16:00:00','boda','av dolores 123',76543218,'tarjeta de debito',509),
     (210,'quinceaños Camila','2024-10-28','08:00:00','14:00:00','quinceaños','av progreso 150',76543219,'transferencia bancaria',510),
-    (211,'boda de Valentino y Adriana','2024-11-28','10:00:00','16:00:00','boda','av pizarro 665',76543220,'tarjeta de credito',511);
+    (211,'boda de leonardo y Adriana','2024-11-28','10:00:00','16:00:00','boda','av pizarro 665',76543220,'tarjeta de credito',511);
     
 select * from evento;
 
--- 6)
+-- 5)
 insert into empleado(dni,fecha_contratacion,puesto,direccion,salario,id_evento)
 values 
 	(29614137,'2024-05-01','mozo','av bolognesi 1003',2000,200),
@@ -273,7 +246,31 @@ values
     (12345665,'2024-02-07','bartender','hurtley 120',2200,207);
     
 select * from empleado;
-    
+
+-- 6)
+insert into horario_trabajo(id_horario,horario_inicio,horario_fin,fecha,dni_empleado)
+values 
+	(300,'08:00:00','14:00:00','2024-09-28',29614137),
+    (301,'09:00:00','15:00:00','2024-01-27',12345678),
+    (302,'10:00:00','16:00:00','2024-02-28',12345677),
+    (303,'08:00:00','14:00:00','2024-03-28',12345676),
+    (304,'11:00:00','17:00:00','2024-04-28',12345675),
+    (305,'08:00:00','14:00:00','2024-05-28',12345674),
+    (306,'11:00:00','17:00:00','2024-06-28',12345673),
+    (307,'09:00:00','15:00:00','2024-07-28',12345672),
+    (308,'10:00:00','16:00:00','2024-08-28',29614137),
+    (309,'10:00:00','16:00:00','2024-09-28',12345668),
+    (310,'08:00:00','14:00:00','2024-09-28',12345667),
+    (311,'10:00:00','16:00:00','2024-10-28',12345666),
+    (312,'09:00:00','15:00:00','2024-11-28',12345665),
+    (313,'08:00:00','14:00:00','2024-12-28',12345674),
+    (314,'10:00:00','16:00:00','2024-02-28',12345673),
+    (315,'09:00:00','15:00:00','2024-04-28',12345672),
+    (316,'08:00:00','14:00:00','2024-06-28',29614137),
+    (317,'11:00:00','17:00:00','2024-08-28',12345678),
+    (318,'09:00:00','15:00:00','2024-10-28',12345677),
+    (319,'08:00:00','14:00:00','2024-12-28',12345676);
+select * from horario_trabajo;
 -- 7) 
 insert into tipo_contratacion(id_tipo_contratacion,cantidad,fecha_reserva,tipo_servicio,id_evento)
 values 
@@ -301,30 +298,30 @@ values
 select * from tipo_contratacion;
 
 -- 8)
-insert into horario_trabajo(id_horario,horario_inicio,horario_fin,fecha,dni_empleado)
+insert into menu(id_menu, precio_persona, nombre_menu,id_evento)
 values 
-	(300,'08:00:00','14:00:00','2024-09-28',29614137),
-    (301,'09:00:00','15:00:00','2024-01-27',12345678),
-    (302,'10:00:00','16:00:00','2024-02-28',12345677),
-    (303,'08:00:00','14:00:00','2024-03-28',12345676),
-    (304,'11:00:00','17:00:00','2024-04-28',12345675),
-    (305,'08:00:00','14:00:00','2024-05-28',12345674),
-    (306,'11:00:00','17:00:00','2024-06-28',12345673),
-    (307,'09:00:00','15:00:00','2024-07-28',12345672),
-    (308,'10:00:00','16:00:00','2024-08-28',29614137),
-    (309,'10:00:00','16:00:00','2024-09-28',12345668),
-    (310,'08:00:00','14:00:00','2024-09-28',12345667),
-    (311,'10:00:00','16:00:00','2024-10-28',12345666),
-    (312,'09:00:00','15:00:00','2024-11-28',12345665),
-    (313,'08:00:00','14:00:00','2024-12-28',12345674),
-    (314,'10:00:00','16:00:00','2024-02-28',12345673),
-    (315,'09:00:00','15:00:00','2024-04-28',12345672),
-    (316,'08:00:00','14:00:00','2024-06-28',29614137),
-    (317,'11:00:00','17:00:00','2024-08-28',12345678),
-    (318,'09:00:00','15:00:00','2024-10-28',12345677),
-    (319,'08:00:00','14:00:00','2024-12-28',12345676);
-
-
+	(500,20,'Sabor peruano'),
+    (501,23,'Del ajo y aji'),
+    (502,25,'Come rico'),
+    (503,25,'La casa del sabor'),
+    (504,30,'Sazon Peruana'),
+    (505,18,'Sazon Casera'),
+    (506,22,'Las tres ollitas'),
+    (507,25,'Cucharita cucharon'),
+    (508,28,'Sal y pimienta'),
+    (509,25,'Papas y camotes'),
+    (510,40,'Orgullo peruano'),
+    (511,22,'Mixtura de sabor'),
+    (512,26,'El Nene'),
+    (513,23,'Kndela'),
+    (514,20,'La zambita'),
+    (515,40,'Los Rodriguez'),
+    (516,25,'Hermanos Ayar'),
+    (517,30,'Pica rico'),
+    (518,30,'Magia al paladar'),
+    (519,21,'Menu perucho');
+    
+select * from menu;
 
 -- 9)
 insert into ingredientes(id_ingrediente, precio_unidad, unidad_medida, cantidad_requerida, nombre_ingrediente, id_menu)
@@ -403,6 +400,7 @@ values
     (819,'Rosatel',921345987,'rosatel@gmail.com','av ee.uu 192','arequipa','arequipa');
     
 select * from proveedor;
+alter table proveedor modify column id_proveedor int auto_increment;
 
 -- 12) 
 insert into inventario(id_inventario, nombre_producto, cantidad_disponible, unidad_medida, precio_unidad, id_proveedor)
@@ -458,74 +456,13 @@ values
 select * from factura;
 
 
-delimiter //
-drop function if exists id_evento//
-create function id_evento() returns int deterministic
-begin 
-	declare evento_id int;
-    select max(e.id_evento) into evento_id
-	from evento e;
-    return evento_id;
-end
-//delimiter ;
--- select id_evento() as 'id mas grande de la tabla evento';
-
-delimiter //
-drop function if exists id_contatacion//
-create function id_contratacion() returns int deterministic
-begin 
-	declare contratacion_id int;
-    select max(t.id_tipo_contratacion) into contratacion_id
-	from tipo_contratacion t;
-    return contratacion_id;
-end
-//delimiter ;
--- select id_contratacion() as 'id de contratacion';
-
-delimiter //
-drop function if exists id_pedido//
-create function id_pedido() returns int deterministic
-begin 
-	declare pedido_id int;
-    select max(p.id_pedido) into pedido_id
-	from pedido p;
-    return pedido_id;
-end
-//delimiter ;
-select id_pedido() as 'pedido';
-
-delimiter //
-drop function if exists id_factura//
-create function id_factura() returns int deterministic
-begin 
-	declare factura_id int;
-    select max(f.id_factura) into factura_id
-	from factura f;
-    return factura_id;
-end
-//delimiter ;
-select id_factura() as 'factura';
-
-delimiter //
-drop function if exists precio//
-create function precio(nombre_del_menu varchar(30)) returns int deterministic
-begin 
-	declare precio int;
-    select m.precio_persona into precio
-    from menu m
-    where m.nombre_menu = nombre_del_menu;
-    return precio;
-end
-//delimiter ;
-select precio('Sabor peruano') as 'precio por persona';
-
 -- funcion para agregar persona a la tabla persona 
 delimiter //
 DROP PROCEDURE IF EXISTS insertar //
 CREATE PROCEDURE insertar(
 -- persona
 IN dni int, 
-IN primer_nombre VARCHAR(20),
+IN primer_nombre VARCHAR(20), 
 IN segundo_nombre VARCHAR(20), 
 IN apellido_paterno VARCHAR(20),
 IN apellido_materno VARCHAR(20),
@@ -591,48 +528,7 @@ select * from cliente;
 select * from evento;
 select * from tipo_contratacion;
 select * from pedido;
-
-delimiter //
-drop procedure if exists mostrar_factura//
-create procedure mostrar_factura()
-begin
-	DECLARE factura_id INT;
-    SELECT MAX(id_factura) INTO factura_id FROM factura;
-
-    SELECT f.id_factura AS 'ID de la factura',
-           f.dni_cliente AS 'DNI del cliente',
-           f.fecha_emision AS 'Fecha de emisión',
-           m.nombre_menu AS 'Nombre del menú',
-           f.monto_total AS 'Monto Total'
-    from factura f
-    inner join pedido p on p.id_pedido= f.id_pedido
-    inner join evento e on p.id_evento= e.id_evento
-    inner join menu m on e.id_menu=m.id_menu
-    where f.id_factura = factura_id;
-end
-// delimiter ;
-call mostrar_factura();
-
-
-
-DELIMITER //
-drop procedure if exists borrar_datos //
-CREATE PROCEDURE borrar_datos(IN dni_usuario INT)
-BEGIN
-    DECLARE cliente_id INT;
-    declare evento_id int;
-    set evento_id= id_evento();
-    
-    DELETE FROM pedido WHERE id_evento = evento_id;
-    DELETE FROM tipo_contratacion WHERE id_evento = evento_id;
-    delete from evento where id_evento=evento_id;
-    
-	SELECT dni INTO cliente_id FROM cliente WHERE dni = dni_usuario;
-    DELETE FROM cliente WHERE dni = dni_usuario;
-    DELETE FROM persona WHERE dni = dni_usuario;
-END //
-DELIMITER ;
-CALL borrar_datos(1);
+select * from empleado;
 
 delimiter //
 drop procedure if exists facturar//
@@ -662,9 +558,211 @@ end
 // delimiter ;
 call facturar();
 select * from factura;
+
+delimiter //
+drop procedure if exists mostrar_factura//
+create procedure mostrar_factura()
+begin
+	DECLARE factura_id INT;
+    SELECT MAX(id_factura) INTO factura_id FROM factura;
+
+    SELECT f.id_factura AS 'ID de la factura',
+           f.dni_cliente AS 'DNI del cliente',
+           f.fecha_emision AS 'Fecha de emisión',
+           m.nombre_menu AS 'Nombre del menú',
+           f.monto_total AS 'Monto Total'
+    from factura f
+    inner join pedido p on p.id_pedido= f.id_pedido
+    inner join evento e on p.id_evento= e.id_evento
+    inner join menu m on e.id_menu=m.id_menu
+    where f.id_factura = factura_id;
+end
+// delimiter ;
+call mostrar_factura();
+
+delimiter //
+drop procedure if exists ingresar_servicio//
+create procedure ingresar_servicio(in precio_persona int, in nombre_menu varchar(30))
+begin
+	declare menu_id int;
+    set menu_id = id_menu()+1;
+    insert into menu (id_menu, precio_persona, nombre_menu)
+    values (menu_id, precio_persona, nombre_menu);
+end
+// delimiter ; 
+call ingresar_servicio(40, 'Sabor peruano');
+select * from menu;
+
+delimiter // 
+drop procedure if exists mostrar_servicios1//
+create procedure mostrar_servicios1()
+begin
+	select distinct m.nombre_menu as 'Menus que disponemos'
+	from menu m;
+    
+end
+// delimiter ;
+call mostrar_servicios1();
+
+delimiter // 
+drop procedure if exists mostrar_servicios2//
+create procedure mostrar_servicios2()
+begin 
+	select distinct e.tipo_evento as 'Tipo de eventos'
+    from evento e;
+end
+// delimiter ; 
+call mostrar_servicios2();
+
+delimiter //
+drop procedure if exists ingresar_empleados//
+create procedure ingresar_empleados(
+-- persona
+IN dni int, 
+IN primer_nombre VARCHAR(20), 
+IN segundo_nombre VARCHAR(20), 
+IN apellido_paterno VARCHAR(20),
+IN apellido_materno VARCHAR(20),
+in correo varchar(50),
+in telefono int,
+-- empleado
+in fecha_contratacion date,
+in puesto varchar(20),
+in direccion varchar(50),
+in salario int, 
+in id_evento int,
+-- horario de trabajo
+in horario_inicio time, 
+in horario_fin time, 
+in fecha date
+)
+begin 
+	declare horario_id int;
+    set horario_id = id_horario()+1;
+	INSERT INTO persona (dni, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, correo, telefono)
+    VALUES (dni, primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, correo, telefono);
+    
+    insert into empleado (dni,fecha_contratacion,puesto,direccion, salario, id_evento)
+    values (dni,fecha_contratacion, puesto , direccion , salario, id_evento);
+    
+    insert into horario_trabajo(id_horario,horario_inicio,horario_fin, fecha,dni_empleado)
+    values(horario_id,horario_inicio,horario_fin,fecha, dni);
+end
+// delimiter ;  
+call ingresar_empleados(1,'a','b','c','d','e','1','2024-02-16','mozo','f',2000,211,'20:00:00','03:00:00','2024-11-28');
+select * from persona;
+select  *from empleado;
+select * from horario_trabajo;
+
+
+delimiter // 
+drop function if exists id_horario//
+create function id_horario()returns int deterministic
+begin 
+	declare horario_id int;
+    select max(h.id_horario) into horario_id
+    from horario_trabajo h;
+    return horario_id;
+end
+// delimiter ;
+select  id_horario() as 'id';
+
+
+
+delimiter // 
+drop function if exists id_menu//
+create function id_menu() returns int deterministic
+begin 
+	declare menu_id int;
+    select max(m.id_menu) into menu_id
+    from menu m;
+    return menu_id;
+end
+// delimiter ; 
+select id_menu() as 'id maximo de menu';
+
+delimiter //
+drop function if exists id_evento//
+create function id_evento() returns int deterministic
+begin 
+	declare evento_id int;
+    select max(e.id_evento) into evento_id
+	from evento e;
+    return evento_id;
+end
+//delimiter ;
+-- select id_evento() as 'id mas grande de la tabla evento';
+
+delimiter //
+drop function if exists id_contatacion//
+create function id_contratacion() returns int deterministic
+begin 
+	declare contratacion_id int;
+    select max(t.id_tipo_contratacion) into contratacion_id
+	from tipo_contratacion t;
+    return contratacion_id;
+end
+//delimiter ;
+-- select id_contratacion() as 'id de contratacion';
+
+delimiter //
+drop function if exists id_pedido//
+create function id_pedido() returns int deterministic
+begin 
+	declare pedido_id int;
+    select max(p.id_pedido) into pedido_id
+	from pedido p;
+    return pedido_id;
+end
+//delimiter ;
+select id_pedido() as 'pedido';
+
+delimiter //
+drop function if exists id_factura//
+create function id_factura() returns int deterministic
+begin 
+	declare factura_id int;
+    select max(f.id_factura) into factura_id
+	from factura f;
+    return factura_id;
+end
+//delimiter ;
+select id_factura() as 'factura';
+
+delimiter //
+drop function if exists precio//
+create function precio(nombre_del_menu varchar(30)) returns int deterministic
+begin 
+	declare precio int;
+    select m.precio_persona into precio
+    from menu m
+    where m.nombre_menu = nombre_del_menu;
+    return precio;
+end
+//delimiter ;
+select precio('Sabor peruano') as 'precio por persona';
+
+DELIMITER //
+drop procedure if exists borrar_datos //
+CREATE PROCEDURE borrar_datos(IN dni_usuario INT)
+BEGIN
+    DECLARE cliente_id INT;
+    declare evento_id int;
+    set evento_id= id_evento();
+    
+    DELETE FROM pedido WHERE id_evento = evento_id;
+    DELETE FROM tipo_contratacion WHERE id_evento = evento_id;
+    delete from evento where id_evento=evento_id;
+    
+	SELECT dni INTO cliente_id FROM cliente WHERE dni = dni_usuario;
+    DELETE FROM cliente WHERE dni = dni_usuario;
+    DELETE FROM persona WHERE dni = dni_usuario;
+END //
+DELIMITER ;
+CALL borrar_datos(1);
+
 DROP PROCEDURE IF EXISTS actualizar_datos;
 DELIMITER //
-
 CREATE PROCEDURE actualizar_datos(
     IN dni_param INT,
     IN fecha_contratacion_param DATE,
@@ -683,15 +781,14 @@ BEGIN
         id_evento = id_evento_param
     WHERE
         dni = dni_param;
-END //
-
-DELIMITER ;
-CALL actualizar_datos(29614137, '2024-05-02', 'mesero', 'av bolognesi 1004', 2200, 201);
+END
+// DELIMITER ;
 select * from empleado;
+
 DROP PROCEDURE IF EXISTS mostrar_venta;
 DELIMITER //
 
-CREATE PROCEDURE mostrar_venta(IN factura_id INT)
+CREATE PROCEDURE mostrar_venta()
 BEGIN
     SELECT
         f.id_factura,
@@ -706,31 +803,47 @@ BEGIN
         c.notas_adicionales
     FROM factura f
     JOIN cliente c ON f.dni_cliente = c.dni
-    JOIN persona p ON c.dni = p.dni
-    WHERE f.id_factura = factura_id;
+    JOIN persona p ON c.dni = p.dni;
 END //
 
 DELIMITER ;
-CALL mostrar_venta(1009);
+CALL mostrar_venta();
+
+delimiter //
+drop function if exists id_feedback_cliente//
+create function id_feedback_cliente()returns int deterministic
+begin 
+	declare feedback_cliente_id int;
+    select max(f.id_feedback) into feedback_cliente_id
+    from feedback_cliente f;
+    return feedback_cliente_id;
+end
+// delimiter ;
+select id_feedback_cliente() as 'id';
+
+
+delimiter // 
+drop procedure if exists comentario//
+create procedure comentario (in comentario varchar(100),in calificacion int, in dni_cliente int )
+begin 
+	declare id_comentario int;
+    declare fecha date;
+    set id_comentario=id_feedback_cliente() +1;
+    set fecha=now();
+    insert into feedback_cliente (id_feedback, comentario, calificacion, fecha_feedback, dni_cliente)
+    values(id_comentario,comentario,calificacion,fecha,dni_cliente);
+end
+// delimiter ; 
+call comentario ('si',2,74863840);
+
+select * from feedback_cliente;
 
 drop procedure if exists Insertar_Proveedor;
 delimiter //
 create procedure Insertar_Proveedor(in nom_prv varchar(50), in tel int, in cor varchar(50), in dir varchar(50), in dep varchar(30), in ciu varchar(30))
 begin
-	insert into proveedor(nombre_proveedor, telefono, correo, direccion, departamento, ciudad) values (nom_prv, tel, cor, dir, dep, ciu);
+	insert into proveedor(nombre_proveedor, telefono, correo, direccion, departamento, ciudad) 
+    values (nom_prv, tel, cor, dir, dep, ciu);
 end;
 //
 delimiter ;
-
-call Insertar_Proveedor("Feria del Altiplano", 912345678, "feria.altiplano@gmail.com", "teniente ferre 206", "arequipa", "arequipa");
-select * from proveedor;
-DROP PROCEDURE IF EXISTS Insertar_Inventario;
-DELIMITER //
-CREATE PROCEDURE Insertar_Inventario(in nom_prod varchar(50), in cant int, in unidad varchar(20), in precio int, in proveedor int)
-BEGIN
-	insert into inventario(nombre_producto, cantidad_disponible, unidad_medida, precio_unidad, id_proveedor) values (nom_prod, cant, unidad, precio, proveedor);
-END; //
-DELIMITER ;
-CALL Insertar_Inventario('Chichasara', 20, 'kilogramos', 2, 820);
-select * from inventario;
-
