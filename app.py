@@ -1,5 +1,6 @@
 from flask_mysqldb import MySQL
 from flask import Flask 
+from flask import flash
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
@@ -18,6 +19,14 @@ def index ():
 @app.route('/cotizar')
 def dashboard(): 
     return render_template ('cotizar.html')
+
+@app.route('/metodo_pago/<dni>')
+def metodo_pago(dni):
+    return render_template('metodo_pago.html',dni=dni)
+
+@app.route('/factura')
+def factura():
+    return render_template('factura.html')
 
 @app.route('/sesion')
 def sesion():
@@ -53,7 +62,19 @@ def insert_datos():
         cur.callproc('insertar', (dni,primer_nombre,segundo_nombre,apellido_paterno,apellido_materno,correo,telefono,departamento,ciudad,notas_adicionales))
         conn.commit()
         cur.close()
+        return redirect(url_for('metodo_pago', dni=dni))
+
+@app.route('/borrar_datos', methods=['POST'])
+def borrar_datos():
+    if request.method=='POST':
+        dni=request.form['dni']
+        conn = mysql.connection
+        cur = conn.cursor()
+        cur.callproc('borrar_datos',(dni,))
+        conn.commit()
+        cur.close()
         return redirect(url_for('index'))
+    
 
 @app.route('/mostrar_datos')
 def mostrar_datos():
