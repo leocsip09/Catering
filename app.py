@@ -2,12 +2,15 @@ from flask_mysqldb import MySQL
 from flask import Flask 
 import mysql.connector
 from flask import Flask, render_template, request, redirect, url_for
+import os
 app = Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '74863840'
-app.config['MYSQL_DB'] = 'catering'
+app.config['MYSQL_PASSWORD'] = 'Ocsip'
+app.config['MYSQL_DB'] =  'catering'
+
+contra = '74863840'
 
 mysql = MySQL(app)
 
@@ -64,4 +67,4 @@ def mostrar_datos():
     cur.close()
     return render_template('datos.html', datos=datos)
 if __name__== '__main__':
-    app.run(debug=True, port =5000)
+    app.run(debug=True)

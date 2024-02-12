@@ -8,18 +8,90 @@
 
 </head>
 <body>
-    <h1>Servicio de Catering Arequipa</h1>
-    <p>Cotizar servicio de catering</p>
-    <form action="/cotizar" method="get">
-        <button type="submit">Cotizar</button>
-    </form>
-    <p>Solo administrativos</p><br>
-    <form action="/sesion" method="get">
-        <button type="submit">Login</button>
-    </form>
+    <div class="head">
+        <div class = "navbar">
+            <a href="#">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+            <a href="{{ url_for('dashboard') }}">Cotizar</a>
+            <a href="#servicios">Servicios</a>
+            <a href="{{ url_for('sesion') }}">Solo administrativos</a>
+        </div>
+    </div>
+    <header class="content header" id="header">
+        <h1 class="title">Servicio de Catering "El Dennis Ritchie"</h1>
+        <p>¡Te damos la bienvenida al mejor servicio de catering de la EPCC, ¡"El Dennis Ritchie"! Estamos encantados de ofrecerte experiencias culinarias excepcionales, donde la exquisitez y la calidad se encuentran en cada detalle. Nuestro equipo se esfuerza por brindarte momentos memorables a través de deliciosos platillos y un servicio impecable. ¡Gracias por confiar en nosotros para hacer de tus eventos momentos inolvidables!</p>
+    </header>
+    <section class="servicios" id="servicios">
+        <div class="eventos">
+            <h2 class="subtitle">Eventos</h2>
+            <div class="eventos_env">
+                <div class="boda">
+                    <h2 class="subsubtitle">Bodas</h2>
+                    <img src="{{ url_for('static', filename='imagenes/bod.jpg') }}" alt="Imagen de bodas" style="width: 400px;">
+                </div>            
+                <div class="baby_shower">
+                    <h2 class="subsubtitle">Baby Shower</h2>
+                    <img src="{{ url_for('static', filename='imagenes/bab.jpg') }}" alt="baby shower" style="width: 400px;">
+                </div>
+                <div class="prom">
+                    <h2 class="subsubtitle">Fiesta de Promoción</h2>
+                    <img src="{{ url_for('static', filename='imagenes/prom.jpg') }}" alt="fiesta prom" style="width: 400px;">
+                </div>
+                <div class="cumples">
+                    <h2 class="subsubtitle">Cumpleaños</h2>
+                    <img src="{{ url_for('static', filename='imagenes/cump.jpg') }}" alt="cum" style="width: 400px;">
+                </div>
+                <div class="otras">
+                    <h2 class="subsubtitle">Otros eventos</h2>
+                </div>
+            </div>
+        </div>
+        <div class="tipo_serv">
+            <h2 class="subtitle">Tipo de servicios</h2>
+            <div class="eventos_env">
+                <div class="mov">
+                    <h2 class="subsubtitle">Movilidad</h2>
+                </div>            
+                <div class="musica">
+                    <h2 class="subsubtitle">Música</h2>
+                </div>
+                <div class="prom">
+                    <h2 class="subsubtitle">Comida</h2>
+                </div>
+                <div class="cumples">
+                    <h2 class="subsubtitle">Decoración</h2>
+                </div>
+                <div class="bebida">
+                    <h2 class="subsubtitle">Bebida</h2>
+                </div>
+                <div class="cumples">
+                    <h2 class="subsubtitle">Hora Loca</h2>
+                </div>
+            </div>
+        </div>
+        <div class="menu">
 
-
-
+        </div>
+    </section>
+    <section class="content sau" id="nosotros">
+        <h2 class="subtitle">Nosotros</h2>
+        <p>Somos estudiantes de la Escuela de Ciencia de la Computación de la UNSA, hemos decidido ofrecer servicios de catering. Nos esforzamos por brindar un servicio de calidad con un toque personal.</p>
+    </section>
+    <section class="contacto" id="contacto">
+        <h2>Contáctanos por si surge alguna duda</h2>
+        <ul>
+            <li>Teléfono: 972 466 447</li>
+            <li>Teléfono: 981 981 815</li>
+            <li>Teléfono: 988 860 462</li>
+            <li>Teléfono: 954 714 658</li>
+            <li>Email: sjorge@unsa.edu.pe</li>
+            <li>Email: klarico@unsa.edu.pe</li>
+            <li>Email: krospigliosi@unsa.edu.pe</li>
+            <li>Email: lponze@unsa.edu.pe</li>
+            <li>Dirección: Av. Los Árboles Rojinegros 123, Arequipa, Perú</li>
+        </ul>
+    </section>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='login.js') }}"></script>
 </body>
