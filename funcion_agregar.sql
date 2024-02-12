@@ -17,3 +17,12 @@ begin
 end;
 //
 delimiter ;
+
+drop procedure if exists Mostrar_IngredientesMenu;
+delimiter //
+create procedure Mostrar_IngredientesMenu()
+begin
+	select m.nombre_menu, i.nombre_ingrediente from menu m inner join ingredientes i on m.id_menu = i.id_menu;
+end;
+//
+delimiter ;
