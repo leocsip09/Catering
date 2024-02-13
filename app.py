@@ -24,14 +24,17 @@ def dashboard():
 def ingresar_empleado():
     return render_template('ingresar_empleado.html')
 
-@app.route('/pagar/<dni>')
-def metodo_pago(dni):
-    return render_template('pagar.html',dni=dni)
-
 @app.route('/agregar_proveedor')
 def proveedor():
     return render_template('agregar_proveedor.html')
 
+@app.route('/agregar_ingrediente')
+def agregar_ingrediente():
+    return render_template('agregar_ingrediente.html')
+
+@app.route('/agregar_producto')
+def producto():
+    return render_template('agregar_producto.html')
 @app.route('/comentario')
 def comentario():
     return render_template('comentario.html')
@@ -161,6 +164,36 @@ def ingresar_proveedor():
         cur.close()
         return redirect(url_for('administrador'))
 
+@app.route('/ingresar_producto',methods=['POST'])
+def ingresar_producto():
+    if request.method=='POS':
+        nom_prod = request.form['nom_prod']
+        cant = request.form['cant']
+        unidad = request.form['unidad']
+        precio = request.form['precio']
+        dep = request.form['dep']
+        proveedor = request.form['proveedor']
+        conn=mysql.connection
+        cur=conn.cursor()
+        cur.callproc('Insertar_Inventario',(nom_prod,cant,unidad,precio,dep,proveedor))
+        conn.commit()
+        cur.close()
+        return redirect(url_for('administrador'))
+
+@app.route('/ingresar_ingrediente',methods=['POST'])
+def ingresar_ingrediente():
+    if request.method=='POS':
+        nom_ingr = request.form['nom_ingr']
+        cant_req = request.form['cant_req']
+        id_men = request.form['id_men']
+        id_prov = request.form['id_prov']
+        conn=mysql.connection
+        cur=conn.cursor()
+        cur.callproc('Agregar_Ingrediente',(nom_ingr,cant_req,id_men,id_prov))
+        conn.commit()
+        cur.close()
+        return redirect(url_for('administrador'))
+
 @app.route ('/ingresar_menus',methods=['POST'])
 def ingresar_menus():
     if request.method=='POST':
@@ -206,16 +239,14 @@ def mostrar_servicios():
     cur.close()
     return render_template('mostrar_servicios.html',evento=evento,menu=menu)
 
-@app.route('/borrar_datos', methods=['POST'])
-def borrar_datos():
-    if request.method=='POST':
-        dni=request.form['dni']
-        conn = mysql.connection
-        cur = conn.cursor()
-        cur.callproc('borrar_datos',(dni,))
-        conn.commit()
-        cur.close()
-        return redirect(url_for('index'))
+@app.route('/mostrar_ingredientes')
+def mostrar_ingredientes():
+    conn = mysql.connection
+    cur = conn.cursor()
+    cur.callproc('Mostrar_IngredientesMenu')
+    ing = cur.fetchall()
+    cur.close()
+    return render_template('mostrar_ingrediente.html', ing=ing)
 
 @app.route('/mostrar_datos')
 def mostrar_datos():
