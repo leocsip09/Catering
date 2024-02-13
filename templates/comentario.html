@@ -9,7 +9,7 @@
     <form action="{{ url_for('ingresar_comentario') }}" method="post">
 
         <label for="comentario">Comentario:</label>
-        <input type="texto" id="comentario"  name="comentario" required><br>
+        <input type="texto" id="comentario"  name="comentario" maxlength="100" required><br>
 
         <label for="calificacion">Calificacion:</label>
         <input type="number" id="calificacion" name="calificacion"  required><br>

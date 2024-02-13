@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{ url_for('ingresar_ingrediente') }}" method="post">
+
+        <label for="nom_ingr">Nombre del ingrediente:</label>
+        <input type="texto" id="nom_ingr"  name="nom_ingr" maxlength="40" required><br>
+
+        <label for="cant_req">Cantidad:</label>
+        <input type="number" id="cant_req" name="cant_req"  required><br>
+
+        <label for="id_men">Unidad de medida:</label>
+        <input type="texto" id="id_men" name="id_men" maxlength="20"required><br>
+
+        <label for="id_prov ">Precio por unidad:</label>
+        <input type="number" id="id_prov"  name="id_prov"  required><br>
+
+        <button id="backButton">Back</button>
+        <script>
+            document.getElementById("backButton").addEventListener("click", function() {
+                window.history.back();
+            });
+        </script>
+        <form action="{{ url_for('ingresar_ingrediente') }}" method="get">
+        <button type="submit">Enviar</button>
+        </form>
+    </form> 
+</body>
+</html>

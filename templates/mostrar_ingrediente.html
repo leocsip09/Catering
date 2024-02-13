@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ingredientes disponible para los menus</h1>
+    <table border="1">
+        <tr>
+            <th>Nombre del menu</th>
+            <th>Nombre del ingrediente</th>
+
+        </tr>
+        {% for ing in ing %}
+        <tr>
+            <td>{{ ing[0] }}</td>
+            <td>{{ ing[1] }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <form action="/administrador" method="get">
+        <button type="submit">Pagina principal</button>
+    </form>
+</body>
+</html>

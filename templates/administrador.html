@@ -20,9 +20,25 @@
     <form action="/actualizar_dato" method="get">
         <button type="submit">Actualizar </button>
     </form>
-    <p>Mostrar los datos de todos los clientes  </p>
+    <p>Agregar un proveedor</p>
+    <form action="/agregar_proveedor" method="get">
+        <button type="submit">Agregar</button>
+    </form>
+    <p>Historial de ventas  </p>
     <form action="{{url_for('mostrar_datos')}}" method="get">
         <button type="submit">Mostrar Datos</button>
+    </form>
+    <p>agregar producto  </p>
+    <form action="/agregar_producto" method="get">
+        <button type="submit">Agregar</button>
+    </form>
+    <p>Agregar ingredientes para un nuevo menu </p>
+    <form action="/agregar_ingrediente" method="get">
+        <button type="submit">Agregar</button>
+    </form>
+    <p>Ver ingredientes  </p>
+    <form action="{{url_for('mostrar_ingredientes')}}" method="get">
+        <button type="submit">Agregar</button>
     </form>
     <form action="/" method="get" id="logoutButton" >
         <button type="submit">Cerrar Sesion</button>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{ url_for('ingresar_proveedor') }}" method="post">
+
+        <label for="nom_prv">Nombre del proveedor:</label>
+        <input type="texto" id="nom_prv"  name="nom_prv" maxlength="100" required><br>
+
+        <label for="tel">Telefono de contacto:</label>
+        <input type="number" id="tel" name="tel"  required><br>
+
+        <label for="cor">Correo:</label>
+        <input type="texto" id="cor" name="cor" maxlength="50"required><br>
+
+        <label for="dir">Direccion:</label>
+        <input type="texto" id="dir"  name="dir" maxlength="50" required><br>
+
+        <label for="dep">Departamento:</label>
+        <input type="text" id="dep" name="dep"  maxlength="20" required><br>
+
+        <label for="ciu">Ciudad:</label>
+        <input type="text" id="ciu" name="ciu"  maxlength="20" required><br>
+
+        <button id="backButton">Back</button>
+        <script>
+            document.getElementById("backButton").addEventListener("click", function() {
+                window.history.back();
+            });
+        </script>
+        <form action ="{{ url_for('ingresar_proveedor') }}" method="get" >
+        <button type="submit">Enviar</button>
+        </form>        
+
+    </form>
+</body>
+</html>
